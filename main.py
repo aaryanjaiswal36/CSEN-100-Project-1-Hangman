@@ -55,31 +55,35 @@ words = [
     "Moonlight"
 ]
 
-while True:
+while play_again:
+    word = random.choice(words)
+    lives = 6
+    guessed_letters = []
+    display = ["_"] * len(word)
     guessed = False
-    if play_again == True:
-        word = words.random()
-        words.remove(word)
-        length = len(word)
-        display = ""
-        for letter in word:
-          display += "_ "
-        display = display[0:-1]
-    guess_condition == False
+
     while guess_condition == False:
+        print("Word: " + display)
+        print("Lives: " + lives)
         guess = input("Enter your guess: ")
-        if guess.isalpha() and len(guess) == 1:
+        if guess.isalpha() and len(guess) == 1 and guess in guessed_letters == False:
             guess_condition == True:
+            guessed_letters.append(guess)
         else:
             print("Enter a proper value")
     
     right = False
-    for letter in word:
-        if guess == letter:
-            display[word.index(letter) * 2 - 1] == letter
+    for i in range(len(word)):
+                if word[i] == guess:
+                    display[i] = guess
+                    right = True
     
     if right = False:
         lives -= 1
+
+    if display == word:
+        print("Word guessed, you've won!")
+        guessed = True
 
     if lives == 0 or guessed == True:
         play = 0
