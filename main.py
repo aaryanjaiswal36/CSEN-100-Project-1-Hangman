@@ -3,56 +3,56 @@ import random
 print("Let's play hangman!")
 play_again = True
 words = [
-    "Lantern",
-    "Volcano",
-    "Whisper",
-    "Marble",
-    "Telescope",
-    "Thunder",
-    "Meadow",
-    "Puzzle",
-    "Cinnamon",
-    "Glacier",
-    "Compass",
-    "Velvet",
-    "Dolphin",
-    "Eclipse",
-    "Backpack",
-    "Sapphire",
-    "Tornado",
-    "Mushroom",
-    "Keyboard",
-    "Horizon",
-    "Pebble",
-    "Symphony",
-    "Cactus",
-    "Elevator",
-    "Stardust",
-    "Penguin",
-    "Fortress",
-    "Bubble",
-    "Magnet",
-    "Waterfall",
-    "Cinnamon",
-    "Orbit",
-    "Feather",
-    "Avalanche",
-    "Pocket",
-    "Rainbow",
-    "Skeleton",
-    "Parachute",
-    "Blueprint",
-    "Jellyfish",
-    "Clockwork",
-    "Desert",
-    "Origami",
-    "Lighthouse",
-    "Raspberry",
-    "Satellite",
-    "Cobblestone",
-    "Firefly",
-    "Labyrinth",
-    "Moonlight"
+    "lantern",
+    "volcano",
+    "whisper",
+    "marble",
+    "telescope",
+    "thunder",
+    "meadow",
+    "puzzle",
+    "cinnamon",
+    "glacier",
+    "compass",
+    "velvet",
+    "dolphin",
+    "eclipse",
+    "backpack",
+    "sapphire",
+    "tornado",
+    "mushroom",
+    "keyboard",
+    "horizon",
+    "pebble",
+    "symphony",
+    "cactus",
+    "elevator",
+    "stardust",
+    "penguin",
+    "fortress",
+    "bubble",
+    "magnet",
+    "waterfall",
+    "cinnamon",
+    "orbit",
+    "feather",
+    "avalanche",
+    "pocket",
+    "rainbow",
+    "skeleton",
+    "parachute",
+    "blueprint",
+    "jellyfish",
+    "clockwork",
+    "desert",
+    "origami",
+    "lighthouse",
+    "raspberry",
+    "satellite",
+    "cobblestone",
+    "firefly",
+    "labyrinth",
+    "moonlight"
 ]
 
 while play_again:
@@ -64,31 +64,34 @@ while play_again:
       display.append(" ")
   lives = 6
   guessed_letters = []
-  
-  guessed = False
-  guess_condition = False
-  while not guess_condition:
-      print("".join(display))
-      print("Lives left: " + str(lives))
-      guess = input("Guess a letter: ")
-      if guess.isalpha() and len(guess) == 1 and guess not in guessed_letters:
-          guess_condition = True
-          guessed_letters.append(guess)
-      else:
-          print("Enter a proper value")
-  right = False
-  for i in range(len(word)):
-              if word[i] == guess:
-                  display[i] = guess
-                  right = True
-  
-  if right == False:
+
+  while lives > 0:
+    guessed = False
+    guess_condition = False
+    while not guess_condition:
+        print("".join(display))
+        print("Lives left: " + str(lives))
+        guess = input("Guess a letter: ")
+        if guess.isalpha() and guess.islower() and len(guess) == 1 and guess not in guessed_letters:
+            guess_condition = True
+            guessed_letters.append(guess)
+        else:
+            print("Not a valid guess. Please enter a single lowercase letter.")
+    
+    right = False
+    for i in range(len(word)):
+      if word[i] == guess:
+        display[i * 2] = guess
+        right = True
+    
+    if not right:
       lives -= 1
 
-  if display == word:
+    word_display = "".join([display[i] for i in range (len(display)) if i % 2 == 0])
+    if word_display == word:
       print("Word guessed, you've won!")
-      guessed = True
-
+      break
+  
   if lives == 0 or guessed == True:
       play = 0
       while play != 1 or play != 2:
