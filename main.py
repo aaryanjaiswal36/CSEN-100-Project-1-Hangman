@@ -69,14 +69,13 @@ while play_again:
   guess_condition = False
   while not guess_condition:
       print("".join(display))
-      print("Lives left: " + lives)
+      print("Lives left: " + str(lives))
       guess = input("Guess a letter: ")
-      if guess.isalpha() and len(guess) == 1 and guess in guessed_letters == False:
-          guess_condition == True
+      if guess.isalpha() and len(guess) == 1 and guess not in guessed_letters:
+          guess_condition = True
           guessed_letters.append(guess)
       else:
           print("Enter a proper value")
-  
   right = False
   for i in range(len(word)):
               if word[i] == guess:
