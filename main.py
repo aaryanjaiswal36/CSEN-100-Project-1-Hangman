@@ -66,7 +66,7 @@ while play_again:
   lives = 6
   guessed_letters = []
 
-  while lives > 0:
+  while True:
     guessed = False
     guess_condition = False
     while not guess_condition:
