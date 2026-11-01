@@ -1,7 +1,7 @@
 import random
 
 print("Let's play hangman!")
-play_again = True
+
 words = [
     "lantern",
     "volcano",
@@ -55,6 +55,7 @@ words = [
     "moonlight"
 ]
 
+play_again = True
 while play_again:
   word = random.choice(words)
   display = []
@@ -86,19 +87,22 @@ while play_again:
     
     if not right:
       lives -= 1
+    if lives == 0:
+      print("Out of lives, game over!")
 
     word_display = "".join([display[i] for i in range (len(display)) if i % 2 == 0])
     if word_display == word:
       print("Word guessed, you've won!")
       break
-  
-  if lives == 0 or guessed == True:
-      play = 0
-      while play != 1 or play != 2:
-          play = input("Do you want to play again(1 = yes, 2 = no)")
-      if play == 2:
-          print("Bye")
-          break
-      else:
-          print("Ok, one more game")
-          play_again = True
+
+  valid_play_again = False
+  while not valid_play_again:
+    play_again_question = input("Play again? (yes/no) ")
+    if play_again_question == "yes":
+      valid_play_again = True
+      print("New game!")
+    elif play_again_question == "no":
+      valid_play_again = True
+      play_again = False
+    else:
+      print("Invalid input.")
