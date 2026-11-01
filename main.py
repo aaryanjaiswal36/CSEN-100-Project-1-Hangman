@@ -57,21 +57,20 @@ words = [
 
 while play_again:
   word = random.choice(words)
-  display = ""
+  display = []
   for i in range (len(word)):
+    display.append("_")
     if i != len(word) - 1:
-      display += "_ "
-    else:
-      display += "_"
+      display.append(" ")
   lives = 6
   guessed_letters = []
+  
   guessed = False
-
   guess_condition = False
-  while guess_condition == False:
-      print("Word: " + display)
-      print("Lives: " + lives)
-      guess = input("Enter your guess: ")
+  while not guess_condition:
+      print("".join(display))
+      print("Lives left: " + lives)
+      guess = input("Guess a letter: ")
       if guess.isalpha() and len(guess) == 1 and guess in guessed_letters == False:
           guess_condition == True
           guessed_letters.append(guess)
