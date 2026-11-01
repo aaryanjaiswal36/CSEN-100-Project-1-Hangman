@@ -77,7 +77,7 @@ while play_again:
             guess_condition = True
             guessed_letters.append(guess)
         else:
-            print("Not a valid guess. Please enter a single lowercase letter.")
+            print("Not a valid guess. Please enter a single letter.")
     
     right = False
     for i in range(len(word)):
