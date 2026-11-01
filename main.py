@@ -86,6 +86,7 @@ while play_again:
         right = True
     
     if not right:
+      print("Letter not found!")
       lives -= 1
     if lives == 0:
       print("Out of lives, game over!")
