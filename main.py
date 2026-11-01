@@ -1,5 +1,5 @@
 import random
-lives = 6
+
 print("Let's play hangman!")
 play_again = True
 words = [
@@ -56,43 +56,48 @@ words = [
 ]
 
 while play_again:
-    word = random.choice(words)
-    lives = 6
-    guessed_letters = []
-    display = ["_"] * len(word)
-    guessed = False
+  word = random.choice(words)
+  display = ""
+  for i in range (len(word)):
+    if i != len(word) - 1:
+      display += "_ "
+    else:
+      display += "_"
+  lives = 6
+  guessed_letters = []
+  guessed = False
 
-    while guess_condition == False:
-        print("Word: " + display)
-        print("Lives: " + lives)
-        guess = input("Enter your guess: ")
-        if guess.isalpha() and len(guess) == 1 and guess in guessed_letters == False:
-            guess_condition == True:
-            guessed_letters.append(guess)
-        else:
-            print("Enter a proper value")
-    
-    right = False
-    for i in range(len(word)):
-                if word[i] == guess:
-                    display[i] = guess
-                    right = True
-    
-    if right = False:
-        lives -= 1
+  guess_condition = False
+  while guess_condition == False:
+      print("Word: " + display)
+      print("Lives: " + lives)
+      guess = input("Enter your guess: ")
+      if guess.isalpha() and len(guess) == 1 and guess in guessed_letters == False:
+          guess_condition == True
+          guessed_letters.append(guess)
+      else:
+          print("Enter a proper value")
+  
+  right = False
+  for i in range(len(word)):
+              if word[i] == guess:
+                  display[i] = guess
+                  right = True
+  
+  if right == False:
+      lives -= 1
 
-    if display == word:
-        print("Word guessed, you've won!")
-        guessed = True
+  if display == word:
+      print("Word guessed, you've won!")
+      guessed = True
 
-    if lives == 0 or guessed == True:
-        play = 0
-        while play != 1 or play != 2:
-            play = input("Do you want to play again(1 = yes, 2 = no)")
-        if play = 2:
-            print("Bye")
-            break
-        else:
-            print("Ok, one more game")
-            play_again = True
-
+  if lives == 0 or guessed == True:
+      play = 0
+      while play != 1 or play != 2:
+          play = input("Do you want to play again(1 = yes, 2 = no)")
+      if play == 2:
+          print("Bye")
+          break
+      else:
+          print("Ok, one more game")
+          play_again = True
