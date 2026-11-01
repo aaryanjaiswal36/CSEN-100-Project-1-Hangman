@@ -76,6 +76,8 @@ while play_again:
         if guess.isalpha() and len(guess) == 1 and guess not in guessed_letters:
             guess_condition = True
             guessed_letters.append(guess)
+        elif guess == "help":
+            print(", ".join(guessed_letters))
         else:
             print("Not a valid guess. Please enter a single letter.")
     
@@ -94,6 +96,7 @@ while play_again:
 
     word_display = "".join([display[i] for i in range (len(display)) if i % 2 == 0])
     if word_display == word:
+      print(", ".join(display))
       print("Word guessed, you've won!")
       break
 
