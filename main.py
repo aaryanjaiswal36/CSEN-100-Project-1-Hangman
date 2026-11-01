@@ -72,8 +72,8 @@ while play_again:
     while not guess_condition:
         print("".join(display))
         print("Lives left: " + str(lives))
-        guess = input("Guess a letter: ")
-        if guess.isalpha() and guess.islower() and len(guess) == 1 and guess not in guessed_letters:
+        guess = input("Guess a letter: ").lower()
+        if guess.isalpha() and len(guess) == 1 and guess not in guessed_letters:
             guess_condition = True
             guessed_letters.append(guess)
         else:
@@ -89,6 +89,7 @@ while play_again:
       lives -= 1
     if lives == 0:
       print("Out of lives, game over!")
+      break
 
     word_display = "".join([display[i] for i in range (len(display)) if i % 2 == 0])
     if word_display == word:
